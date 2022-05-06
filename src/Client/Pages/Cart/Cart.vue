@@ -58,8 +58,9 @@ export default {
             this.total = Math.round(total * 100) / 100
             
         },
-        removeProduct(id) {
+        removeProduct() {
             console.log(id)
+            this.renderLocalStorageCart()
         }
     },
     mounted() {
@@ -69,6 +70,7 @@ export default {
 
         axios.get(ApiRoutes.buildCartCheckoutPage.url).then((response) => {
             this.deliveryMethods = response.data.delivery_methods,
+            console.log(response)
             this.paymentMethods = response.data.payment_methods
         }).catch((error) => {
             console.log(error)

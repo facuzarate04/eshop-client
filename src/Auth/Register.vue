@@ -55,7 +55,6 @@ export default {
             axios.get(ApiRoutes.csrf.url).then(response => {
                 axios.post(ApiRoutes.register.url ,this.registerForm).then((response) => {
                     console.log(response)
-                    response.status == 200 ? this.$router.push({name: 'products'}) : this.errors = response.data
                 }).catch((error) => {
                     console.log(error)
                 })

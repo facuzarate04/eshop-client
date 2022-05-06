@@ -4,7 +4,10 @@
             <fieldset id="deliveryMethods" class="flex justify-center items-center space-x-4">
                 <div v-for="deliveryMethod in deliveryMethods" :key="deliveryMethod" class="flex items-center space-x-2">
                     <input v-model="orderForm.delivery_method_code" :value="deliveryMethod.code" type="radio" id="deliveryMethods">
-                    <label >{{deliveryMethod.name}}</label>
+                    <label >
+                        <p class="font-semibold">{{deliveryMethod.name}}</p>
+                        <p class="font-light">Costo: {{deliveryMethod.specifications.price}}</p>
+                    </label>
                 </div>
             </fieldset>
             <fieldset id="paymentMethods" class="flex justify-center items-center space-x-4">

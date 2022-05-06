@@ -6,8 +6,12 @@
             <!-- Order Component -->
             <div v-for="order in orders" :key="order.id" class="rounded-md relative w-72 shadow-2xl p-3 bg-white">
                 <div class="py-2">
-                    <div class="text-center text-xl font-bold">ORDEN</div>
-                    <div class="text-center text-xs font-semibold">Email del cliente <p class="font-light">{{order.user.email}}</p></div>
+                    <h4 class="text-center text-xl font-bold">ORDEN</h4>
+                    <span class="text-center text-sm font-bold p-1 rounded-md" 
+                        :class="{'bg-yellow-200': order.status.name == 'PENDING', 'bg-green-200': order.status.name == 'DELIVERED', 'bg-red-200': order.status.name == 'CANCELLED'}">
+                        {{order.status.name}}
+                    </span>
+                    <h4 class="text-center text-xs font-semibold">Forma de entrega<p class="font-light">{{order.deliveryMethodSpecification}}</p></h4>
                 </div>
                 <div class="text-center text-xs font-bold mb-1">~~~~~~~~~~~~~~~~~~~~~~~~~~~~</div>
                 <div class="text-xs pl-2">
@@ -60,6 +64,7 @@ export default {
     },
     mounted() {
         document.title = 'Mis Compras'
+        
         axios.get(`${ApiRoutes.getOrders.url}?page=${this.page}`, {withCredentials:true}).then((response) => {
             this.orders = response.data.orders
         }).catch((error) => {

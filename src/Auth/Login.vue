@@ -93,8 +93,6 @@ export default {
         login() {
             axios.get(ApiRoutes.csrf.url).then(response => {
                 axios.post(ApiRoutes.login.url, this.loginForm).then((response) => {
-                    console.log(response.data)
-                    response.status == 200 ? this.$router.push({name: 'products'}) : this.errors = response.data
                 }).catch((error) => {
                     console.log(error)
                 })
